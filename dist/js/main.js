@@ -7,7 +7,7 @@ var app = new PIXI.Application({
     transparent: true
 });
 
-app.interactive = true;
+var vibrating = false;
 
 var app2 = new PIXI.Application({
     view: document.getElementById("backgroundCanvas"),
@@ -52,44 +52,15 @@ function setupFox() {
     var filter = new PIXI.filters.RGBSplitFilter();
 
     fox.on('mouseover', function () {
+        vibrating = true;
         fox.filters = [filter];
     });
     fox.on('mouseout', function () {
+        vibrating = false;
         fox.filters = [];
     });
 
-    // window.addEventListener("mouseover", function(){
-    //     console.log(`hello`)
-    //     fox.filters = []
-    //     // fox.visible = true
-    // })
-
-    // window.addEventListener("mouseout", function(){
-    //     console.log(`goodbye`)
-
-    //     // fox.visible = true
-    // })
     app.stage.addChild(fox);
-}
-
-function update(e) {
-
-    if (vibrating) {
-        rgbFilter.blue.x = Math.random() * 10 - 5;
-        rgbFilter.blue.y = Math.random() * 10 - 5;
-        // rgbFilter.green.x = (Math.random()* 10) - 5
-        // rgbFilter.green.y = (Math.random()* 10) - 5
-        rgbFilter.red.x = Math.random() * 10 - 5;
-        rgbFilter.red.y = Math.random() * 10 - 5;
-    }
-
-    var temp = rt;
-    rt = rt2;
-    rt2 = temp;
-
-    rtSprite.texture = rt;
-
-    app2.renderer.render(app2.stage, rt2);
 }
 
 function update(e) {}
