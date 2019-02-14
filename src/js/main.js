@@ -53,10 +53,11 @@ function setupFox(){
     app.loader.resources.displacement.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT
     
     let filter = new PIXI.filters.RGBSplitFilter()
+    let filter2 = new PIXI.filters.GlitchFilter()
 
     fox.on('mouseover', function(){
         vibrating = true
-        fox.filters = [filter]
+        fox.filters = [filter, filter2]
     });
     fox.on('mouseout', function(){
         vibrating = false
